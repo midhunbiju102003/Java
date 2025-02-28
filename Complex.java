@@ -19,3 +19,6 @@ public class Complex {
     }
     
 }
+#Enter the real and imaginary part of first complex number:3.5 2.5
+#Enter real and imaginary part of second complex number:1.5 4.0
+#Sum=6.5+5.0i
