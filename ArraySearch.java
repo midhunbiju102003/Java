@@ -34,3 +34,12 @@ public class ArraySearch {
         scanner.close();
     }
 }
+//Enter the number of elements in the array:
+//5
+//Enter 5 elements:
+//10
+//22
+//66
+//Enter the element to search:
+//66
+//Element found at index: 2
