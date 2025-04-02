@@ -1,0 +1,40 @@
+class Employee { int Empid; String Name; double Salary; String Address;
+
+// Constructor to initialize Employee data members
+public Employee(int empid, String name, double salary, String address) {
+    this.Empid = empid;
+    this.Name = name;
+    this.Salary = salary;
+    this.Address = address;
+}
+
+}
+
+class Teacher extends Employee { String Department; String SubjectsTaught;
+
+// Constructor to initialize Teacher data members
+public Teacher(int empid, String name, double salary, String address, String department, String subjectsTaught) {
+    super(empid, name, salary, address); // Calling parent class constructor
+    this.Department = department;
+    this.SubjectsTaught = subjectsTaught;
+}
+
+// Display function to print all details
+public void display() {
+    System.out.println("Employee ID: " + Empid);
+    System.out.println("Name: " + Name);
+    System.out.println("Salary: " + Salary);
+    System.out.println("Address: " + Address);
+    System.out.println("Department: " + Department);
+    System.out.println("Subjects Taught: " + SubjectsTaught);
+}
+
+}
+
+public class Main { public static void main(String[] args) { // Creating an object of Teacher class Teacher t1 = new Teacher(101, "Alice", 50000, "123 Street, NY", "Computer Science", "Java, C++");
+
+// Displaying teacher details
+    t1.display();
+}
+
+}
