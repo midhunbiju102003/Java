@@ -1,40 +1,51 @@
-class Employee { int Empid; String Name; double Salary; String Address;
-
-// Constructor to initialize Employee data members
-public Employee(int empid, String name, double salary, String address) {
-    this.Empid = empid;
-    this.Name = name;
-    this.Salary = salary;
-    this.Address = address;
+class Main {
+    public static void main(String[] args) {
+        Teacher[] teachers = new Teacher[2];
+        
+        teachers[0] = new Teacher("1", "Alice", "123 Street", 50000, "Computer Science", "Java");
+        teachers[1] = new Teacher("2", "Bob", "456 Avenue", 55000, "Mathematics", "Algebra");
+        
+        teachers[0].display();
+        teachers[1].display();
+    }
 }
 
+class Employee {  // Renamed for clarity
+    String Empid;
+    String Name;
+    String Address;
+    int Salary;
+
+    Employee(String id, String name, String addr, int salary) {
+        this.Empid = id;
+        this.Name = name;
+        this.Address = addr;
+        this.Salary = salary;
+    }
+
+    void display() {
+        System.out.println("EmpID       : " + this.Empid);
+        System.out.println("Name        : " + this.Name);
+        System.out.println("Address     : " + this.Address);
+        System.out.println("Salary      : " + this.Salary);
+    }
 }
 
-class Teacher extends Employee { String Department; String SubjectsTaught;
+class Teacher extends Employee {  
+    String Department;
+    String Subject;
 
-// Constructor to initialize Teacher data members
-public Teacher(int empid, String name, double salary, String address, String department, String subjectsTaught) {
-    super(empid, name, salary, address); // Calling parent class constructor
-    this.Department = department;
-    this.SubjectsTaught = subjectsTaught;
-}
+    Teacher(String id, String name, String addr, int salary, String dept, String subj) {
+        super(id, name, addr, salary);
+        this.Department = dept;
+        this.Subject = subj;
+    }
 
-// Display function to print all details
-public void display() {
-    System.out.println("Employee ID: " + Empid);
-    System.out.println("Name: " + Name);
-    System.out.println("Salary: " + Salary);
-    System.out.println("Address: " + Address);
-    System.out.println("Department: " + Department);
-    System.out.println("Subjects Taught: " + SubjectsTaught);
-}
-
-}
-
-public class Main { public static void main(String[] args) { // Creating an object of Teacher class Teacher t1 = new Teacher(101, "Alice", 50000, "123 Street, NY", "Computer Science", "Java, C++");
-
-// Displaying teacher details
-    t1.display();
-}
-
+    void display() {
+        System.out.println("------------------------------------------------");
+        super.display();
+        System.out.println("Department  : " + this.Department);
+        System.out.println("Subject     : " + this.Subject);
+        System.out.println("------------------------------------------------");
+    }
 }
