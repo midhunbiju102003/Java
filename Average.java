@@ -28,22 +28,26 @@ public class Average {
                 }
 
                 sum += num;  // Add the valid number to the sum
-                count++;  // Increment count of valid numbers
+                count++;     // Increment count of valid numbers
 
             } catch (NegativeInputException e) {
                 System.out.println(e.getMessage());  // Show the error message
                 i--;  // Do not count this iteration towards N
+            } catch (Exception e) {
+                System.out.println("Invalid input. Please enter an integer.");
+                scanner.next(); // Clear the invalid input
+                i--; // Do not count this iteration towards N
             }
         }
 
         // Calculate and display the average if count > 0 (to avoid division by zero)
         if (count > 0) {
-            double average = (double) sum / count;  // Corrected average calculation
+            double average = (double) sum / count;
             System.out.println("The Average of the valid numbers is: " + average);
         } else {
             System.out.println("No valid numbers entered, cannot calculate average.");
         }
 
-        scanner.close();  // Close the scanner resource
+        scanner.close();  
     }
 }
