@@ -1,85 +1,30 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*; 
+import java.io.*; 
 
-class Publisher {
-    private String name;
+public class StackDemo { 
+    public static void main(String args[]) { 
+        // Creating an empty Stack 
+        Stack<Integer> stk = new Stack<Integer>(); 
 
-    public Publisher(String name) {
-        this.name = name;
-    }
+        // Use push() method to add elements 
+        stk.push(10); 
+        stk.push(15); 
+        stk.push(30); 
+        stk.push(20); 
+        stk.push(5); 
 
-    public String getName() {
-        return name;
-    }
-}
+        // Displaying the Stack 
+        System.out.println("Initial Stack: " + stk); 
 
-class Book {
-    private String title;
-    private double price;
-    private Publisher publisher;
+        // Fetching the element at the top of the Stack 
+        System.out.println("The element at the top of the stack is: " + stk.peek()); 
 
-    public Book(String title, double price, Publisher publisher) {
-        this.title = title;
-        this.price = price;
-        this.publisher = publisher;
-    }
+        // Removing elements using pop() method 
+        System.out.println("Popped element: " + stk.pop()); 
+        System.out.println("Popped element: " + stk.pop()); 
 
-    public void display() {
-        System.out.println("-----------------------------------");
-        System.out.println("Title      : " + title);
-        System.out.println("Price      : $" + price);
-        System.out.println("Publisher  : " + (publisher != null ? publisher.getName() : "Unknown"));
-        System.out.println("-----------------------------------");
-    }
-}
-
-class Literature extends Book {
-    public Literature(String title, double price, Publisher publisher) {
-        super(title, price, publisher);
-    }
-}
-
-class Fiction extends Book {
-    public Fiction(String title, double price, Publisher publisher) {
-        super(title, price, publisher);
-    }
-}
-
-public class Main {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        List<Book> books = new ArrayList<>();
-
-        // Creating publishers
-        Publisher publisher1 = new Publisher("Publisher A");
-        Publisher publisher2 = new Publisher("Publisher B");
-
-        // Adding books
-        books.add(new Literature("Literature Book 1", 20.99, publisher1));
-        books.add(new Literature("Literature Book 2", 18.50, publisher1));
-        books.add(new Fiction("Fiction Book 1", 15.75, publisher2));
-        books.add(new Fiction("Fiction Book 2", 12.99, publisher2));
-
-        // User input for category
-        System.out.print("Enter the category (Literature or Fiction): ");
-        String category = scanner.nextLine().trim();
-
-        // Filtering and displaying books based on category
-        boolean found = false;
-        System.out.println("\nBooks in the " + category + " category:");
-        for (Book book : books) {
-            if ((category.equalsIgnoreCase("Literature") && book instanceof Literature) ||
-                (category.equalsIgnoreCase("Fiction") && book instanceof Fiction)) {
-                book.display();
-                found = true;
-            }
-        }
-
-        if (!found) {
-            System.out.println("No books found in this category. Please enter 'Literature' or 'Fiction'.");
-        }
-
-        scanner.close();
-    }
+        // Displaying the Stack after pop operation 
+        System.out.println("Stack after pop operation: " + stk); 
+        System.out.println("The element at the top of the stack is: " + stk.peek()); 
+    } 
 }
