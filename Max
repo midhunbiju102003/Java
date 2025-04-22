@@ -1,57 +1,81 @@
-import java.awt.*; 
-import java.awt.event.*; 
+import java.awt.*;
+import java.awt.event.*;
 
-public class MaxNumber extends Frame { 
-    private TextField num1Field, num2Field, num3Field, resultField; 
-    private Button calculateButton; 
+public class MaxNumber extends Frame {
+    private TextField num1Field, num2Field, num3Field, resultField;
+    private Button calculateButton, resetButton;
 
-    public MaxNumber() {  // Added missing opening brace
-        setTitle("Maximum of Three Numbers"); 
-        setSize(300, 200); 
-        setLayout(new FlowLayout());  
+    public MaxNumber() {
+        setTitle("Maximum of Three Numbers");
+        setSize(350, 250);
+        setResizable(false);
+        setLayout(new GridLayout(6, 2, 5, 5));
 
-        num1Field = new TextField(10); 
-        num2Field = new TextField(10); 
-        num3Field = new TextField(10);  // Added missing semicolon
-        resultField = new TextField(20); 
-        resultField.setEditable(false); 
-        calculateButton = new Button("Calculate Maximum"); 
+        setupComponents();
+        setupEventHandlers();
 
-        add(new Label("Enter three numbers: ")); 
-        add(num1Field); 
-        add(num2Field); 
-        add(num3Field); 
-        add(calculateButton); 
-        add(new Label("Maximum: ")); 
-        add(resultField); 
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                System.exit(0);
+            }
+        });
+    }
 
-        calculateButton.addActionListener(new ActionListener() { 
-            public void actionPerformed(ActionEvent e) { 
-                calculateMaximum(); 
-            } 
-        }); 
+    private void setupComponents() {
+        num1Field = new TextField();
+        num2Field = new TextField();
+        num3Field = new TextField();
+        resultField = new TextField();
+        resultField.setEditable(false);
 
-        addWindowListener(new WindowAdapter() { 
-            public void windowClosing(WindowEvent e) { 
-                System.exit(0); 
-            } 
-        }); 
-    } 
+        calculateButton = new Button("Calculate Maximum");
+        resetButton = new Button("Reset");
 
-    private void calculateMaximum() { 
-        try { 
-            double num1 = Double.parseDouble(num1Field.getText()); 
-            double num2 = Double.parseDouble(num2Field.getText()); 
-            double num3 = Double.parseDouble(num3Field.getText()); 
-            double maximum = Math.max(Math.max(num1, num2), num3); 
-            resultField.setText(Double.toString(maximum)); 
-        } catch (NumberFormatException ex) { 
-            resultField.setText("Invalid input. Enter numbers."); 
-        } 
-    } 
+        add(new Label("Number 1:"));
+        add(num1Field);
+        add(new Label("Number 2:"));
+        add(num2Field);
+        add(new Label("Number 3:"));
+        add(num3Field);
+        add(new Label("")); // Empty cell
+        add(calculateButton);
+        add(new Label("")); // Empty cell
+        add(resetButton);
+        add(new Label("Maximum:"));
+        add(resultField);
+    }
 
-    public static void main(String[] args) { 
-        MaxNumber maxApp = new MaxNumber(); 
-        maxApp.setVisible(true); 
-    } 
+    private void setupEventHandlers() {
+        calculateButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                calculateMaximum();
+            }
+        });
+
+        resetButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                num1Field.setText("");
+                num2Field.setText("");
+                num3Field.setText("");
+                resultField.setText("");
+            }
+        });
+    }
+
+    private void calculateMaximum() {
+        try {
+            double num1 = Double.parseDouble(num1Field.getText());
+            double num2 = Double.parseDouble(num2Field.getText());
+            double num3 = Double.parseDouble(num3Field.getText());
+            double maximum = Math.max(Math.max(num1, num2), num3);
+            resultField.setText(Double.toString(maximum));
+        } catch (NumberFormatException ex) {
+            resultField.setText("Invalid input. Enter numbers.");
+        }
+    }
+
+    public static void main(String[] args) {
+        MaxNumber maxApp = new MaxNumber();
+        maxApp.setVisible(true);
+    }
 }
